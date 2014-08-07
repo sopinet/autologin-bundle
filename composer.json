@@ -7,7 +7,7 @@
         {
             "name": "Luis Miguel Lopez",
             "email": "llopez@sopinet.com"
-        },        
+        }
     ],
     "minimum-stability": "dev",
     "require": {
