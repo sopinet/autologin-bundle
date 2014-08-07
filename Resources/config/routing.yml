@@ -1,0 +1,3 @@
+autologin:
+    resource: "@AutoAutologinBundle/Controller/DefaultController.php"
+    type:     annotation

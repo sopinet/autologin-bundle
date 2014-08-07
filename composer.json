@@ -1,0 +1,21 @@
+{
+    "name": "sopinet/autologin-bundle",
+    "type": "symfony-bundle",
+    "description": "Symfony AutologinBundle",    
+    "homepage": "http://sopinet.com",    
+    "authors": [
+        {
+            "name": "Luis Miguel Lopez",
+            "email": "llopez@sopinet.com"
+        },        
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.4.3",
+        "symfony/framework-bundle": "~2.4",        
+    },    
+    "autoload": {
+        "psr-0": { "Sopinet\\AutologinBundle": "" }
+    },
+    "target-dir": "Sopinet/AutologinBundle"
+}
