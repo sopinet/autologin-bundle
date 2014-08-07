@@ -1,8 +1,8 @@
 <?php
 
-namespace Auto\AutologinBundle\Service;
+namespace Sopinet\AutologinBundle\Service;
 
-class AutologinHelper {			
+class UrlHelper {			
 	function __construct($entityManager, $container, $router) {
 		$this->em = $entityManager;
 		$this->container = $container;
@@ -10,9 +10,9 @@ class AutologinHelper {
 	}
 
 	/**
-	 * Funcion para generar path autologin	 
+	 * Funcion para generar url autologin	 
 	 */
-	public function generatePath() {
+	public function generateUrl() {
 		$url = "url email";
 		return $url;
 	}

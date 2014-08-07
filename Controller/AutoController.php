@@ -1,15 +1,14 @@
 <?php
 
-namespace Auto\AutologinBundle\Controller;
+namespace Sopinet\AutologinBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
-class DefaultController extends Controller
+class AutoController extends Controller
 {   
-    
     /**
-     * @Route("/autologin", name="autologin")     
+     * @Route("/auto", name="auto")     
      */
     public function autologinAction()
     {    	

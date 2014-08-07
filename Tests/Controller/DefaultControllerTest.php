@@ -1,6 +1,6 @@
 <?php
 
-namespace Auto\AutologinBundle\Tests\Controller;
+namespace Sopinet\AutologinBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
