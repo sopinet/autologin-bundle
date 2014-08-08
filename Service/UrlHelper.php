@@ -12,8 +12,24 @@ class UrlHelper {
 	/**
 	 * Funcion para generar url autologin	 
 	 */
-	public function generateUrl($path, $user) {
-		$url = "url email";
+	public function generateUrl($path, $user) {				
+				
+		if (null === $user->getConfirmationToken()) {
+			/** @var $tokenGenerator \FOS\UserBundle\Util\TokenGeneratorInterface */
+			$tokenGenerator = $this->container->get('fos_user.util.token_generator');
+			$token = $tokenGenerator->generateToken();
+			$user->setConfirmationToken($token);
+			
+			$this->em->persist($user);
+			$this->em->flush();
+		}
+		else{
+			$token = $user->getConfirmationToken();
+		}
+				
+		//TODO: Cambiar el path por uno dinámico, con parámetros dentro del path
+		$url = $this->router->generate('auto_login', array('path' => $path, 'token' => $token), true);		
+		
 		return $url;
 	}
 }

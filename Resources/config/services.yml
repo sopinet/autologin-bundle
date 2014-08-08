@@ -1,5 +1,5 @@
 services:
-    autologin:
+    urlhelper:
        class: Sopinet\AutologinBundle\Service\UrlHelper
        arguments:          
           entityManager: "@doctrine.orm.entity_manager"
