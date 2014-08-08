@@ -12,7 +12,7 @@ class UrlHelper {
 	/**
 	 * Funcion para generar url autologin	 
 	 */
-	public function generateUrl() {
+	public function generateUrl($path, $user) {
 		$url = "url email";
 		return $url;
 	}
