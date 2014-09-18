@@ -1,4 +1,4 @@
-autologin:
+auto_login:
     resource: "@SopinetAutologinBundle/Controller/AutoController.php"
     type:     annotation
     requirements:
