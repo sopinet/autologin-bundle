@@ -40,6 +40,16 @@ sopinet_autologin: ~
 
 ```
 
+### routing.yml
+
+``` yaml
+# app/config/routing.yml
+sopinet_autologin:
+    resource: "@SopinetAutologinBundle/Resources/config/routing.yml"
+    prefix:   /
+
+```
+
 ## How to use
 
 You should generate a URL
