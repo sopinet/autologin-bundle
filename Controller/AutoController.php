@@ -15,18 +15,21 @@ class AutoController extends Controller
      * @Route("/auto/{path}/{token}", name="auto_login")     
      */
     public function autologinAction($path, $token)
-    {    	
+    {
     	$user = $this->container->get('security.context')->getToken()->getUser();
-    	 
+
+        $request = $this->container->get('request');
+        $url = 'http://'.$request->getHost().$request->getBaseUrl().$path;
+
     	if($user != "anon."){
-    		$response = new RedirectResponse($this->get('router')->generate($path));
+    		$response = new RedirectResponse($url);
     	}
     	else {
     		$em = $this->getDoctrine()->getManager();
     		$reUser = $em->getRepository('ApplicationSonataUserBundle:User');
     		$user = $reUser->findOneByConfirmationToken($token);
     		
-    		$response = new RedirectResponse($this->get('router')->generate($path));
+    		$response = new RedirectResponse($url);
     		 
     		$this->authenticateUser($user, $response);
     	
