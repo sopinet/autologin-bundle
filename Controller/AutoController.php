@@ -19,7 +19,7 @@ class AutoController extends Controller
     	$user = $this->container->get('security.context')->getToken()->getUser();
 
         $request = $this->container->get('request');
-        $url = 'http://'.$request->getHost().$request->getBaseUrl().$path;
+        $url = 'http://'.$request->getHost().$request->getBaseUrl().'/'.$path;
 
     	if($user != "anon."){
     		$response = new RedirectResponse($url);
