@@ -26,10 +26,11 @@ class UrlHelper {
 		else{
 			$token = $user->getConfirmationToken();
 		}
-				
-		//TODO: Cambiar el path por uno dinámico, con parámetros dentro del path
-		$url = $this->router->generate('auto_login', array('path' => $path, 'token' => $token), true);		
-		
-		return $url;
+
+        $domain = $this->container->getParameter('sopinet_autologin.domain');
+
+        $url = $domain . $this->router->generate('auto_login', array('path' => $path, 'token' => $token));
+
+        return $url;
 	}
 }
