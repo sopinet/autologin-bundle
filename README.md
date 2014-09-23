@@ -40,13 +40,28 @@ sopinet_autologin: ~
 
 ```
 
+### routing.yml
+
+``` yaml
+# app/config/routing.yml
+sopinet_autologin:
+    resource: "@SopinetAutologinBundle/Resources/config/routing.yml"
+    prefix:   /
+
+```
+
 ## How to use
 
-You should generate a URL
+Generate the URL
+
+``` php
+<?php
 $url = $this->container->get('urlhelper')->generateUrl($route, $user);
 
-Send email with parameter url
+$message = \Swift_Message::newInstance()
+		->setSubject(...)
+		->setFrom(...)
+		->setTo(...)
+		->setBody($this->container->get('templating')->render('your_template.html.twig', array('url' => $url)), 'text/html');
+```
 
-.
-.
-.
