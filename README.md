@@ -36,7 +36,8 @@ public function registerBundles()
 
 ``` yaml
 # app/config/config.yml
-sopinet_autologin: ~
+sopinet_autologin:
+    domain: http://domain.com
 
 ```
 
