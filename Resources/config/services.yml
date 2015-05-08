@@ -1,10 +1,8 @@
 services:
     urlhelper:
        class: Sopinet\AutologinBundle\Service\UrlHelper
-       arguments:          
-          entityManager: "@doctrine.orm.entity_manager"
+       arguments:
           container: "@service_container"
-          router: "@router"
 #    auto_autologin.example:
 #        class: Sopinet\AutologinBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]
