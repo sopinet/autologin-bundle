@@ -31,9 +31,8 @@ class AutoController extends Controller
     		$response = new RedirectResponse($url);
     	}
     	else {
-            /** @var EntityManager $em */
-            $em = $this->getDoctrine()->getManager();
-    		$reUser = $em->getRepository('ApplicationSopinetUserBundle:User');
+
+            $reUser = $this->container->get('doctrine.orm.default_entity_manager')->getRepository('ApplicationSopinetUserBundle:User');
     		$user = $reUser->findOneByConfirmationToken($token);
     		
     		$response = new RedirectResponse($url);
