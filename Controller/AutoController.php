@@ -2,6 +2,7 @@
 
 namespace Sopinet\AutologinBundle\Controller;
 
+use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -10,9 +11,14 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Application\Sonata\UserBundle\Entity\User;
 
 class AutoController extends Controller
-{   
+{
     /**
-     * @Route("/auto/{path}/{token}", name="auto_login")     
+     * Funcion que logea a un usuario con el token pasado y lo redirige al path pasado como parametro
+     * @param $path
+     * @param $token
+     *
+     * @return RedirectResponse
+     * @Route("/auto/{path}/{token}", name="auto_login")
      */
     public function autologinAction($path, $token)
     {
@@ -25,17 +31,19 @@ class AutoController extends Controller
     		$response = new RedirectResponse($url);
     	}
     	else {
-    		$em = $this->getDoctrine()->getManager();
-    		$reUser = $em->getRepository('ApplicationSonataUserBundle:User');
+            /** @var EntityManager $em */
+            $em = $this->getDoctrine()->getManager();
+    		$reUser = $em->getRepository('ApplicationSopinetUserBundle:User');
     		$user = $reUser->findOneByConfirmationToken($token);
     		
     		$response = new RedirectResponse($url);
-    		 
-    		$this->authenticateUser($user, $response);
-    	
-    		$user->setConfirmationToken(null);
-    		$em->persist($user);
-    		$em->flush();
+    		if($user != null) {
+                $this->authenticateUser($user, $response);
+
+                $user->setConfirmationToken(null);
+                $em->persist($user);
+                $em->flush();
+            }
     	}
     	
     	return $response;
