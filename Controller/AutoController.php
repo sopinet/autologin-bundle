@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
-use Application\Sonata\UserBundle\Entity\User;
+use Application\Sopinet\UserBundle\Entity\User;
 
 class AutoController extends Controller
 {
@@ -32,7 +32,7 @@ class AutoController extends Controller
     	}
     	else {
             $em = $this->container->get('doctrine.orm.default_entity_manager');
-            $reUser = $em->getRepository('ApplicationSonataUserBundle:User');
+            $reUser = $em->getRepository('ApplicationSopinetUserBundle:User');
     		$user = $reUser->findOneByConfirmationToken($token);
     		
     		$response = new RedirectResponse($url);
