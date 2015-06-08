@@ -5,6 +5,7 @@ When you receive a notification, invitation, etc. by email with a URL to your si
 With this module, you will login automatically when you click on URL, it's too easy.
 Come on!
 
+## Branch to use with sopinet user bundle
 ## Prerequisites
 
 This module works with FOSUserBundle ([see Documentation](https://github.com/FriendsOfSymfony/FOSUserBundle))
