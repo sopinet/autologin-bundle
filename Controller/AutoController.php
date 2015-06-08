@@ -31,8 +31,8 @@ class AutoController extends Controller
     		$response = new RedirectResponse($url);
     	}
     	else {
-
-            $reUser = $this->container->get('doctrine.orm.default_entity_manager')->getRepository('ApplicationSopinetUserBundle:User');
+            $em = $this->container->get('doctrine.orm.default_entity_manager');
+            $reUser = $em->getRepository('ApplicationSonataUserBundle:User');
     		$user = $reUser->findOneByConfirmationToken($token);
     		
     		$response = new RedirectResponse($url);
