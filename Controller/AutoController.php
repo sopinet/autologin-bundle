@@ -22,42 +22,42 @@ class AutoController extends Controller
      */
     public function autologinAction($path, $token)
     {
-    	$user = $this->container->get('security.context')->getToken()->getUser();
+        $user = $this->container->get('security.context')->getToken()->getUser();
 
         $request = $this->container->get('request');
         $url = 'http://'.$request->getHost().$request->getBaseUrl().'/'.$path;
 
-    	if($user != "anon."){
-    		$response = new RedirectResponse($url);
-    	}
-    	else {
+        if($user != "anon."){
+            $response = new RedirectResponse($url);
+        }
+        else {
             $em = $this->container->get('doctrine.orm.default_entity_manager');
             $reUser = $em->getRepository($this->container->getParameter('sopinet_autologin.userRepository'));
-    		$user = $reUser->findOneByConfirmationToken($token);
-    		
-    		$response = new RedirectResponse($url);
-    		if($user != null) {
+            $user = $reUser->findOneByConfirmationToken($token);
+
+            $response = new RedirectResponse($url);
+            if($user != null) {
                 $this->authenticateUser($user, $response);
 
                 $user->setConfirmationToken(null);
                 $em->persist($user);
                 $em->flush();
             }
-    	}
-    	
-    	return $response;
+        }
+
+        return $response;
     }
-    	
-    protected function authenticateUser(User $user, Response $response)
-   	{
-    	try {
-    		$this->container->get('fos_user.security.login_manager')->loginUser(
-    				$this->container->getParameter('fos_user.firewall_name'),
-    				$user,
-    				$response);
-    	} catch (AccountStatusException $ex) {
-    		// We simply do not authenticate users which do not pass the user
-    		// checker (not enabled, expired, etc.).
-    	}
-    }   
+
+    protected function authenticateUser($user, Response $response)
+    {
+        try {
+            $this->container->get('fos_user.security.login_manager')->loginUser(
+                $this->container->getParameter('fos_user.firewall_name'),
+                $user,
+                $response);
+        } catch (AccountStatusException $ex) {
+            // We simply do not authenticate users which do not pass the user
+            // checker (not enabled, expired, etc.).
+        }
+    }
 }

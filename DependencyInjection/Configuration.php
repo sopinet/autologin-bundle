@@ -23,6 +23,9 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
             ->scalarNode('domain')
+            ->end();
+        $rootNode
+            ->children()
             ->scalarNode('userRepository')
             ->end();
 
