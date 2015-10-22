@@ -22,7 +22,9 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-            ->scalarNode('domain')->end();
+            ->scalarNode('domain')
+            ->scalarNode('userRepository')
+            ->end();
 
         return $treeBuilder;
     }

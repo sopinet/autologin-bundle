@@ -33,9 +33,7 @@ class UrlHelper {
             $token = $user->getConfirmationToken();
         }
 
-        $domain = $this->container->getParameter('sopinet_autologin.domain');
-
-        $url = $domain . $this->router->generate('auto_login', array('path' => $path, 'token' => $token));
+        $url = $this->router->generate('auto_login', array('path' => $path, 'token' => $token), true);
 
         return $url;
     }

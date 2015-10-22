@@ -30,10 +30,19 @@ class SopinetAutologinExtension extends Extension
                 'The "domain" option must be set'
             );
         }
+        if (!isset($config['userRepository'])) {
+            throw new \InvalidArgumentException(
+                'The "userRepository" option must be set'
+            );
+        }
 
         $container->setParameter(
             'sopinet_autologin.domain',
             $config['domain']
+        );
+        $container->setParameter(
+            'sopinet_autologin.userRepository',
+            $config['userRepository']
         );
     }
 }

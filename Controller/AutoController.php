@@ -32,7 +32,7 @@ class AutoController extends Controller
     	}
     	else {
             $em = $this->container->get('doctrine.orm.default_entity_manager');
-            $reUser = $em->getRepository('ApplicationSopinetUserBundle:User');
+            $reUser = $em->getRepository($this->container->getParameter('sopinet_autologin.userRepository'));
     		$user = $reUser->findOneByConfirmationToken($token);
     		
     		$response = new RedirectResponse($url);
